@@ -1,15 +1,16 @@
 Webmozart Expression
 ====================
 
-[![Build Status](https://travis-ci.org/webmozart/expression.svg?branch=master)](https://travis-ci.org/webmozart/expression)
-[![Build status](https://ci.appveyor.com/api/projects/status/6dstc380h5pr5rk3/branch/master?svg=true)](https://ci.appveyor.com/project/webmozart/expression/branch/master)
-[![Latest Stable Version](https://poser.pugx.org/webmozart/expression/v/stable.svg)](https://packagist.org/packages/webmozart/expression)
-[![Total Downloads](https://poser.pugx.org/webmozart/expression/downloads.svg)](https://packagist.org/packages/webmozart/expression)
-[![Dependency Status](https://www.versioneye.com/php/webmozart:expression/1.0.0/badge.svg)](https://www.versioneye.com/php/webmozart:expression/1.0.0)
+[![Build Status](https://dl.circleci.com/status-badge/img/gh/koshuang/expression/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/koshuang/expression/tree/master)
+[![Latest Stable Version](https://poser.pugx.org/koshuang/expression/v/stable.svg)](https://packagist.org/packages/koshuang/expression)
+[![Total Downloads](https://poser.pugx.org/koshuang/expression/downloads.svg)](https://packagist.org/packages/koshuang/expression)
 
-Latest release: [1.0.0](https://packagist.org/packages/webmozart/expression#1.0.0)
+Latest release: [2.0.0](https://packagist.org/packages/koshuang/expression#2.0.0)
 
-PHP >= 5.3.9
+PHP >= 8.1
+
+This is a forked version from https://github.com/webmozart/expression. It's upgraded for PHP 8.1.
+---
 
 This library implements the [Specification Pattern] for PHP. You can use it to
 easily filter results of your domain services by evaluating logical expressions.
@@ -51,18 +52,18 @@ the [`Expr`] factory class:
 ```php
 $expr = Expr::method('getFirstName', Expr::startsWith('Tho'))
     ->andMethod('getAge', Expr::greaterThan(35));
-    
+
 $persons = $repository->findPersons($expr);
 ```
 
-The repository implementation can use the `evaluate()` method to match 
+The repository implementation can use the `evaluate()` method to match
 individual persons against the criteria:
 
 ```php
 class PersonRepositoryImpl implements PersonRepository
 {
     private $persons = [];
-    
+
     public function findPersons(Expression $expr)
     {
         return Expr::filter($this->persons, $expr);
@@ -92,8 +93,8 @@ class HasPreviousBookings extends Method
     public function __construct()
     {
         parent::__construct(
-            'getBookings', 
-            [], 
+            'getBookings',
+            [],
             Expr::count(Expr::greaterThan(0))
         );
     }
@@ -178,7 +179,7 @@ $expr->evaluate(new Person(12));
 // => true
 ```
 
-The `method()` selector also accepts arguments that will be passed to the 
+The `method()` selector also accepts arguments that will be passed to the
 method. Pass the arguments before the evaluated expression:
 
 ```php
@@ -221,7 +222,7 @@ $expr->evaluate([new Person(12), new Person(11)]);
 // => true
 ```
 
-Quantors accept both arrays and `Traversable` instances. The following table 
+Quantors accept both arrays and `Traversable` instances. The following table
 lists all available quantors:
 
 Method                   | Description
@@ -274,7 +275,7 @@ $expr = Expr::method('getFirstName', Expr::startsWith('Tho'))
 Testing
 -------
 
-To make sure that PHPUnit compares [`Expression`] objects correctly, you should 
+To make sure that PHPUnit compares [`Expression`] objects correctly, you should
 register the [`ExpressionComparator`] with PHPUnit in your PHPUnit bootstrap file:
 
 ```php
@@ -298,11 +299,11 @@ Make sure the file is registered correctly in `phpunit.xml.dist`:
 </phpunit>
 ```
 
-The [`ExpressionComparator`] makes sure that PHPUnit compares different 
-[`Expression`] instances by *logical equivalence* instead of by object equality. 
-For example, the following [`Expression`] are logically equivalent, but not equal 
+The [`ExpressionComparator`] makes sure that PHPUnit compares different
+[`Expression`] instances by *logical equivalence* instead of by object equality.
+For example, the following [`Expression`] are logically equivalent, but not equal
 as objects:
- 
+
 ```php
 // Logically equivalent
 $c1 = Expr::notNull()->andSame(35);
@@ -332,8 +333,8 @@ In some cases, you will want to transform expressions to some other
 representation. A prime example is the transformation of an expression to a
 [Doctrine] query.
 
-You can implement a custom [`ExpressionVisitor`] to do the transformation. The 
-visitor's methods `enterExpression()` and `leaveExpression()` are called for 
+You can implement a custom [`ExpressionVisitor`] to do the transformation. The
+visitor's methods `enterExpression()` and `leaveExpression()` are called for
 every node of the expression tree:
 
 ```php
@@ -342,17 +343,17 @@ use Webmozart\Expression\Traversal\ExpressionVisitor;
 class QueryBuilderVisitor implements ExpressionVisitor
 {
     private $qb;
-    
+
     public function __construct(QueryBuilder $qb)
     {
         $this->qb = $qb;
     }
-    
+
     public function enterExpression(Expression $expr)
     {
         // configure the $qb...
     }
-    
+
     public function leaveExpression(Expression $expr)
     {
         // configure the $qb...
@@ -366,11 +367,11 @@ Use an [`ExpressionTraverser`] to traverse an expression with your visitor:
 public function expressionToQueryBuilder(Expression $expr)
 {
     $qb = new QueryBuilder();
-    
+
     $traverser = new ExpressionTraverser();
     $traverser->addVisitor(new QueryBuilderVisitor($qb));
     $traverser->traverse($expr);
-    
+
     return $qb;
 }
 ```

@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  php:
+    image: thecodingmachine/php:8.1-v4-slim-apache
+    volumes:
+      - ./:/var/www/html

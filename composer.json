@@ -21,7 +21,9 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "sebastian/version": "^3.0"
+        "sebastian/version": "^3.0",
+        "phpstan/phpstan": "^1.8",
+        "spatie/phpunit-watcher": "^1.23"
     },
     "autoload": {
         "psr-4": {
@@ -37,5 +39,17 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit"
+        ],
+        "test:watch": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit-watcher watch < /dev/tty"
+        ],
+        "analysis": [
+            "phpstan analyse"
+        ]
     }
 }

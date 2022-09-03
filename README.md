@@ -29,7 +29,7 @@ Installation
 Use [Composer] to install the package:
 
 ```
-$ composer require webmozart/expression
+$ composer require koshuang/expression
 ```
 
 Basic Usage

@@ -83,7 +83,7 @@ class Method extends Selector
             return false;
         }
 
-        return $this->expr->evaluate(call_user_func_array(array($value, $this->methodName), $this->arguments));
+        return $this->expr->evaluate(call_user_func_array([$value, $this->methodName], $this->arguments));
     }
 
     /**

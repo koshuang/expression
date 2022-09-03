@@ -29,18 +29,18 @@ class DomainExpressionsTest extends PHPUnit_Framework_TestCase
         $c1 = new Customer();
         $c1->setPremium(true);
         $c2 = new Customer();
-        $c2->setBookings(array('booking1', 'booking2'));
+        $c2->setBookings(['booking1', 'booking2']);
         $c3 = new Customer();
         $c3->setPremium(true);
-        $c3->setBookings(array('booking1'));
+        $c3->setBookings(['booking1']);
 
-        $customers = array($c1, $c2, $c3);
+        $customers = [$c1, $c2, $c3];
 
-        $this->assertEquals(array($c1, 2 => $c3), Expr::filter($customers, new IsPremium()));
-        $this->assertEquals(array(1 => $c2, 2 => $c3), Expr::filter($customers, new HasPreviousBookings()));
-        $this->assertEquals(array(2 => $c3), Expr::filter($customers, Expr::andX(array(
+        $this->assertEquals([$c1, 2 => $c3], Expr::filter($customers, new IsPremium()));
+        $this->assertEquals([1 => $c2, 2 => $c3], Expr::filter($customers, new HasPreviousBookings()));
+        $this->assertEquals([2 => $c3], Expr::filter($customers, Expr::andX([
             new HasPreviousBookings(),
             new IsPremium(),
-        ))));
+        ])));
     }
 }

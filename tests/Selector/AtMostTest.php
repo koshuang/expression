@@ -30,23 +30,23 @@ class AtMostTest extends PHPUnit_Framework_TestCase
         $atMost1 = new AtMost(1, new GreaterThan(10));
         $atMost2 = new AtMost(2, new GreaterThan(10));
 
-        $this->assertFalse($atMost1->evaluate(array(9, 10, 11, 12)));
-        $this->assertTrue($atMost1->evaluate(array(9, 10, 11)));
-        $this->assertTrue($atMost1->evaluate(array(9, 10)));
-        $this->assertFalse($atMost1->evaluate(new ArrayIterator(array(9, 10, 11, 12))));
-        $this->assertTrue($atMost1->evaluate(new ArrayIterator(array(9, 10, 11))));
-        $this->assertTrue($atMost1->evaluate(new ArrayIterator(array(9, 10))));
+        $this->assertFalse($atMost1->evaluate([9, 10, 11, 12]));
+        $this->assertTrue($atMost1->evaluate([9, 10, 11]));
+        $this->assertTrue($atMost1->evaluate([9, 10]));
+        $this->assertFalse($atMost1->evaluate(new ArrayIterator([9, 10, 11, 12])));
+        $this->assertTrue($atMost1->evaluate(new ArrayIterator([9, 10, 11])));
+        $this->assertTrue($atMost1->evaluate(new ArrayIterator([9, 10])));
 
-        $this->assertFalse($atMost2->evaluate(array(9, 10, 11, 12, 13)));
-        $this->assertTrue($atMost2->evaluate(array(9, 10, 11, 12)));
-        $this->assertTrue($atMost2->evaluate(array(9, 10, 11)));
-        $this->assertTrue($atMost2->evaluate(array(9, 10)));
-        $this->assertFalse($atMost2->evaluate(new ArrayIterator(array(9, 10, 11, 12, 13))));
-        $this->assertTrue($atMost2->evaluate(new ArrayIterator(array(9, 10, 11, 12))));
-        $this->assertTrue($atMost2->evaluate(new ArrayIterator(array(9, 10, 11))));
-        $this->assertTrue($atMost2->evaluate(new ArrayIterator(array(9, 10))));
+        $this->assertFalse($atMost2->evaluate([9, 10, 11, 12, 13]));
+        $this->assertTrue($atMost2->evaluate([9, 10, 11, 12]));
+        $this->assertTrue($atMost2->evaluate([9, 10, 11]));
+        $this->assertTrue($atMost2->evaluate([9, 10]));
+        $this->assertFalse($atMost2->evaluate(new ArrayIterator([9, 10, 11, 12, 13])));
+        $this->assertTrue($atMost2->evaluate(new ArrayIterator([9, 10, 11, 12])));
+        $this->assertTrue($atMost2->evaluate(new ArrayIterator([9, 10, 11])));
+        $this->assertTrue($atMost2->evaluate(new ArrayIterator([9, 10])));
 
-        $this->assertTrue($atMost1->evaluate(array()));
+        $this->assertTrue($atMost1->evaluate([]));
         $this->assertFalse($atMost1->evaluate('foobar'));
     }
 
@@ -54,10 +54,10 @@ class AtMostTest extends PHPUnit_Framework_TestCase
     {
         $expr1 = new AtMost(1, new GreaterThan(10));
         $expr2 = new AtMost(2, new EndsWith('.css'));
-        $expr3 = new AtMost(3, new AndX(array(
+        $expr3 = new AtMost(3, new AndX([
             new GreaterThan(10),
             new EndsWith('.css'),
-        )));
+        ]));
 
         $this->assertSame('atMost(1, >10)', $expr1->toString());
         $this->assertSame('atMost(2, endsWith(".css"))', $expr2->toString());

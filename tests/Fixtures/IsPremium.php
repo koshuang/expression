@@ -18,6 +18,6 @@ class IsPremium extends Method
 {
     public function __construct()
     {
-        parent::__construct('isPremium', array(), Expr::same(true));
+        parent::__construct('isPremium', [], Expr::same(true));
     }
 }

@@ -50,7 +50,7 @@ abstract class Literal implements Expression
             return $this;
         }
 
-        return new AndX(array($this, $expr));
+        return new AndX([$this, $expr]);
     }
 
     public function andNot(Expression $expr)
@@ -75,7 +75,7 @@ abstract class Literal implements Expression
 
     public function andMethod($methodName, $args)
     {
-        return $this->andX(call_user_func_array(array('Webmozart\Expression\Expr', 'method'), func_get_args()));
+        return $this->andX(call_user_func_array(['Webmozart\Expression\Expr', 'method'], func_get_args()));
     }
 
     public function andProperty($propertyName, Expression $expr)
@@ -220,7 +220,7 @@ abstract class Literal implements Expression
             return $this;
         }
 
-        return new OrX(array($this, $expr));
+        return new OrX([$this, $expr]);
     }
 
     public function orNot(Expression $expr)
@@ -245,7 +245,7 @@ abstract class Literal implements Expression
 
     public function orMethod($methodName, $args)
     {
-        return $this->orX(call_user_func_array(array('Webmozart\Expression\Expr', 'method'), func_get_args()));
+        return $this->orX(call_user_func_array(['Webmozart\Expression\Expr', 'method'], func_get_args()));
     }
 
     public function orProperty($propertyName, Expression $expr)

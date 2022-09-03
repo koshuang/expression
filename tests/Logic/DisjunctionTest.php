@@ -31,39 +31,39 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
 {
     public function testCreate()
     {
-        $disjunction = new OrX(array(
+        $disjunction = new OrX([
             $notNull = new Same('10'),
             $greaterThan = new GreaterThan('age', 0),
-        ));
+        ]);
 
-        $this->assertSame(array($notNull, $greaterThan), $disjunction->getDisjuncts());
+        $this->assertSame([$notNull, $greaterThan], $disjunction->getDisjuncts());
     }
 
     public function testCreateInlinesDisjunctions()
     {
-        $disjunction = new OrX(array(
+        $disjunction = new OrX([
             $notNull = new Same('10'),
-            new OrX(array($greaterThan = new GreaterThan('age', 0))),
-        ));
+            new OrX([$greaterThan = new GreaterThan('age', 0)]),
+        ]);
 
-        $this->assertSame(array($notNull, $greaterThan), $disjunction->getDisjuncts());
+        $this->assertSame([$notNull, $greaterThan], $disjunction->getDisjuncts());
     }
 
     public function testOrX()
     {
-        $disjunction1 = new OrX(array($notNull = new Same('10')));
+        $disjunction1 = new OrX([$notNull = new Same('10')]);
 
         // Expressions are value objects, hence we must not alter the original
         // conjunction
         $disjunction2 = $disjunction1->orX($greaterThan = new GreaterThan('age', 0));
 
-        $this->assertSame(array($notNull), $disjunction1->getDisjuncts());
-        $this->assertSame(array($notNull, $greaterThan), $disjunction2->getDisjuncts());
+        $this->assertSame([$notNull], $disjunction1->getDisjuncts());
+        $this->assertSame([$notNull, $greaterThan], $disjunction2->getDisjuncts());
     }
 
     public function testOrXIgnoresDuplicates()
     {
-        $disjunction1 = new OrX(array($notNull = new Same('10')));
+        $disjunction1 = new OrX([$notNull = new Same('10')]);
         $disjunction2 = $disjunction1->orX(new Same('10'));
 
         $this->assertSame($disjunction1, $disjunction2);
@@ -71,21 +71,21 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
 
     public function testOrXInlinesDisjunctions()
     {
-        $disjunction1 = new OrX(array($notNull = new Same('10')));
-        $disjunction2 = new OrX(array($greaterThan = new GreaterThan('age', 0)));
+        $disjunction1 = new OrX([$notNull = new Same('10')]);
+        $disjunction2 = new OrX([$greaterThan = new GreaterThan('age', 0)]);
 
         // Expressions are value objects, hence we must not alter the original
         // conjunction
         $disjunction3 = $disjunction1->orX($disjunction2);
 
-        $this->assertSame(array($notNull), $disjunction1->getDisjuncts());
-        $this->assertSame(array($greaterThan), $disjunction2->getDisjuncts());
-        $this->assertSame(array($notNull, $greaterThan), $disjunction3->getDisjuncts());
+        $this->assertSame([$notNull], $disjunction1->getDisjuncts());
+        $this->assertSame([$greaterThan], $disjunction2->getDisjuncts());
+        $this->assertSame([$notNull, $greaterThan], $disjunction3->getDisjuncts());
     }
 
     public function testOrFalseIgnored()
     {
-        $disjunction1 = new OrX(array($notNull = new Same('10')));
+        $disjunction1 = new OrX([$notNull = new Same('10')]);
         $disjunction2 = $disjunction1->orFalse();
 
         $this->assertSame($disjunction1, $disjunction2);
@@ -93,7 +93,7 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
 
     public function testOrXIgnoresFalse()
     {
-        $disjunction1 = new OrX(array($notNull = new Same('10')));
+        $disjunction1 = new OrX([$notNull = new Same('10')]);
         $disjunction2 = $disjunction1->orX(new AlwaysFalse());
 
         $this->assertSame($disjunction1, $disjunction2);
@@ -101,7 +101,7 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
 
     public function testOrTrueReturnsTrue()
     {
-        $disjunction1 = new OrX(array($notNull = new Same('10')));
+        $disjunction1 = new OrX([$notNull = new Same('10')]);
         $disjunction2 = $disjunction1->orTrue();
 
         $this->assertInstanceOf('Webmozart\Expression\Logic\AlwaysTrue', $disjunction2);
@@ -109,7 +109,7 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
 
     public function testOrXReturnsTrue()
     {
-        $disjunction1 = new OrX(array($notNull = new Same('10')));
+        $disjunction1 = new OrX([$notNull = new Same('10')]);
         $disjunction2 = $disjunction1->orX($true = new AlwaysTrue());
 
         $this->assertSame($true, $disjunction2);
@@ -132,41 +132,41 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
         $method = 'or'.ucfirst($method);
         $disjunction1 = new OrX();
 
-        $disjunction2 = call_user_func_array(array($disjunction1, $method), $args);
+        $disjunction2 = call_user_func_array([$disjunction1, $method], $args);
 
-        $this->assertEquals(array(), $disjunction1->getDisjuncts());
-        $this->assertEquals(array($expected), $disjunction2->getDisjuncts());
+        $this->assertEquals([], $disjunction1->getDisjuncts());
+        $this->assertEquals([$expected], $disjunction2->getDisjuncts());
     }
 
     public function testEvaluate()
     {
-        $disjunction = new OrX(array(
+        $disjunction = new OrX([
             new Key('name', new Same('Thomas')),
             new Key('age', new GreaterThan(0)),
-        ));
+        ]);
 
-        $this->assertTrue($disjunction->evaluate(array('name' => 'Thomas', 'age' => 35)));
-        $this->assertTrue($disjunction->evaluate(array('name' => null, 'age' => 35)));
-        $this->assertTrue($disjunction->evaluate(array('name' => 'Thomas', 'age' => 0)));
-        $this->assertFalse($disjunction->evaluate(array('name' => null, 'age' => 0)));
+        $this->assertTrue($disjunction->evaluate(['name' => 'Thomas', 'age' => 35]));
+        $this->assertTrue($disjunction->evaluate(['name' => null, 'age' => 35]));
+        $this->assertTrue($disjunction->evaluate(['name' => 'Thomas', 'age' => 0]));
+        $this->assertFalse($disjunction->evaluate(['name' => null, 'age' => 0]));
     }
 
     public function testEquivalentTo()
     {
-        $disjunction1 = new OrX(array(
+        $disjunction1 = new OrX([
             new Key('name', new Same('10')),
             new Key('age', new GreaterThan(0)),
-        ));
+        ]);
 
         // disjunctions match independent of the order of the conjuncts
-        $disjunction2 = new OrX(array(
+        $disjunction2 = new OrX([
             new Key('age', new GreaterThan(0)),
             new Key('name', new Same('10')),
-        ));
+        ]);
 
-        $disjunction3 = new OrX(array(
+        $disjunction3 = new OrX([
             new Key('age', new GreaterThan(0)),
-        ));
+        ]);
 
         $this->assertTrue($disjunction1->equivalentTo($disjunction2));
         $this->assertTrue($disjunction2->equivalentTo($disjunction1));
@@ -179,8 +179,8 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
     public function testToString()
     {
         $expr1 = new OrX();
-        $expr2 = new OrX(array(new GreaterThan(10), new EndsWith('.css')));
-        $expr3 = new OrX(array(new GreaterThan(10), new AndX(array(new Contains('foo'), new EndsWith('.css')))));
+        $expr2 = new OrX([new GreaterThan(10), new EndsWith('.css')]);
+        $expr3 = new OrX([new GreaterThan(10), new AndX([new Contains('foo'), new EndsWith('.css')])]);
 
         $this->assertSame('', $expr1->toString());
         $this->assertSame('>10 || endsWith(".css")', $expr2->toString());

@@ -29,14 +29,14 @@ class OrX implements Expression
     /**
      * @var Expression[]
      */
-    private $disjuncts = array();
+    private $disjuncts = [];
 
     /**
      * Creates a disjunction of the given expressions.
      *
      * @param Expression[] $disjuncts The disjuncts.
      */
-    public function __construct(array $disjuncts = array())
+    public function __construct(array $disjuncts = [])
     {
         foreach ($disjuncts as $disjunct) {
             if ($disjunct instanceof self) {
@@ -107,7 +107,7 @@ class OrX implements Expression
 
     public function orMethod($methodName, $args)
     {
-        return $this->orX(call_user_func_array(array('Webmozart\Expression\Expr', 'method'), func_get_args()));
+        return $this->orX(call_user_func_array(['Webmozart\Expression\Expr', 'method'], func_get_args()));
     }
 
     public function orProperty($propertyName, Expression $expr)

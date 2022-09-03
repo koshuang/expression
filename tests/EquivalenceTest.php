@@ -51,81 +51,81 @@ class EquivalenceTest extends PHPUnit_Framework_TestCase
 {
     public function getEquivalentCriteria()
     {
-        return array(
-            array(new Same('10'), new Same('10')),
-            array(new Same('10'), new In(array('10'), true)),
+        return [
+            [new Same('10'), new Same('10')],
+            [new Same('10'), new In(['10'], true)],
 
-            array(new NotSame('10'), new NotSame('10')),
+            [new NotSame('10'), new NotSame('10')],
 
-            array(new Equals('10'), new Equals('10')),
-            array(new Equals('10'), new Equals(10)),
-            array(new Equals('10'), new In(array('10'), false)),
-            array(new Equals('10'), new In(array(10), false)),
+            [new Equals('10'), new Equals('10')],
+            [new Equals('10'), new Equals(10)],
+            [new Equals('10'), new In(['10'], false)],
+            [new Equals('10'), new In([10], false)],
 
-            array(new NotEquals('10'), new NotEquals('10')),
-            array(new NotEquals('10'), new NotEquals(10)),
+            [new NotEquals('10'), new NotEquals('10')],
+            [new NotEquals('10'), new NotEquals(10)],
 
-            array(new GreaterThan('10'), new GreaterThan('10')),
-            array(new GreaterThan('10'), new GreaterThan(10)),
+            [new GreaterThan('10'), new GreaterThan('10')],
+            [new GreaterThan('10'), new GreaterThan(10)],
 
-            array(new GreaterThanEqual('10'), new GreaterThanEqual('10')),
-            array(new GreaterThanEqual('10'), new GreaterThanEqual(10)),
+            [new GreaterThanEqual('10'), new GreaterThanEqual('10')],
+            [new GreaterThanEqual('10'), new GreaterThanEqual(10)],
 
-            array(new LessThan('10'), new LessThan('10')),
-            array(new LessThan('10'), new LessThan(10)),
+            [new LessThan('10'), new LessThan('10')],
+            [new LessThan('10'), new LessThan(10)],
 
-            array(new LessThanEqual('10'), new LessThanEqual('10')),
-            array(new LessThanEqual('10'), new LessThanEqual(10)),
+            [new LessThanEqual('10'), new LessThanEqual('10')],
+            [new LessThanEqual('10'), new LessThanEqual(10)],
 
-            array(new IsEmpty(), new IsEmpty()),
+            [new IsEmpty(), new IsEmpty()],
 
-            array(new IsInstanceOf('SplFileInfo'), new IsInstanceOf('SplFileInfo')),
+            [new IsInstanceOf('SplFileInfo'), new IsInstanceOf('SplFileInfo')],
 
-            array(new KeyExists('10'), new KeyExists('10')),
-            array(new KeyExists('10'), new KeyExists(10)),
+            [new KeyExists('10'), new KeyExists('10')],
+            [new KeyExists('10'), new KeyExists(10)],
 
-            array(new KeyNotExists('10'), new KeyNotExists('10')),
-            array(new KeyNotExists('10'), new KeyNotExists(10)),
+            [new KeyNotExists('10'), new KeyNotExists('10')],
+            [new KeyNotExists('10'), new KeyNotExists(10)],
 
-            array(new Matches('foo.*'), new Matches('foo.*')),
+            [new Matches('foo.*'), new Matches('foo.*')],
 
-            array(new In(array('10'), false), new In(array('10'), false)),
-            array(new In(array('10'), false), new In(array(10), false)),
-            array(new In(array('10'), true), new In(array('10'), true)),
+            [new In(['10'], false), new In(['10'], false)],
+            [new In(['10'], false), new In([10], false)],
+            [new In(['10'], true), new In(['10'], true)],
 
-            array(new StartsWith('10'), new StartsWith('10')),
-            array(new StartsWith('10'), new StartsWith(10)),
+            [new StartsWith('10'), new StartsWith('10')],
+            [new StartsWith('10'), new StartsWith(10)],
 
-            array(new EndsWith('10'), new EndsWith('10')),
-            array(new EndsWith('10'), new EndsWith(10)),
+            [new EndsWith('10'), new EndsWith('10')],
+            [new EndsWith('10'), new EndsWith(10)],
 
-            array(new Contains('10'), new Contains('10')),
-            array(new Contains('10'), new Contains(10)),
+            [new Contains('10'), new Contains('10')],
+            [new Contains('10'), new Contains(10)],
 
-            array(new Not(new Same('10')), new Not(new Same('10'))),
+            [new Not(new Same('10')), new Not(new Same('10'))],
 
-            array(new Key('key', new Same('10')), new Key('key', new Same('10'))),
-            array(new Key('42', new Same('10')), new Key(42, new Same('10'))),
+            [new Key('key', new Same('10')), new Key('key', new Same('10'))],
+            [new Key('42', new Same('10')), new Key(42, new Same('10'))],
 
-            array(new Property('prop', new Same('10')), new Property('prop', new Same('10'))),
+            [new Property('prop', new Same('10')), new Property('prop', new Same('10'))],
 
-            array(new Method('getFoo', array(), new Same('10')), new Method('getFoo', array(), new Same('10'))),
-            array(new Method('getFoo', array(42), new Same('10')), new Method('getFoo', array(42), new Same('10'))),
+            [new Method('getFoo', [], new Same('10')), new Method('getFoo', [], new Same('10'))],
+            [new Method('getFoo', [42], new Same('10')), new Method('getFoo', [42], new Same('10'))],
 
-            array(new AtLeast(1, new Same('10')), new AtLeast(1, new Same('10'))),
+            [new AtLeast(1, new Same('10')), new AtLeast(1, new Same('10'))],
 
-            array(new AtMost(1, new Same('10')), new AtMost(1, new Same('10'))),
+            [new AtMost(1, new Same('10')), new AtMost(1, new Same('10'))],
 
-            array(new Exactly(1, new Same('10')), new Exactly(1, new Same('10'))),
+            [new Exactly(1, new Same('10')), new Exactly(1, new Same('10'))],
 
-            array(new All(new Same('10')), new All(new Same('10'))),
+            [new All(new Same('10')), new All(new Same('10'))],
 
-            array(new Count(new Same(10)), new Count(new Same(10))),
+            [new Count(new Same(10)), new Count(new Same(10))],
 
-            array(new AlwaysTrue(), new AlwaysTrue()),
+            [new AlwaysTrue(), new AlwaysTrue()],
 
-            array(new AlwaysFalse(), new AlwaysFalse()),
-        );
+            [new AlwaysFalse(), new AlwaysFalse()],
+        ];
     }
 
     /**
@@ -139,107 +139,107 @@ class EquivalenceTest extends PHPUnit_Framework_TestCase
 
     public function getNonEquivalentCriteria()
     {
-        return array(
-            array(new Same('10'), new Same('11')),
-            array(new Same('10'), new Same(10)),
-            array(new Same('10'), new Equals('10')),
+        return [
+            [new Same('10'), new Same('11')],
+            [new Same('10'), new Same(10)],
+            [new Same('10'), new Equals('10')],
 
-            array(new Same('10'), new In(array(10), true)),
-            array(new Same('10'), new In(array('10'), false)),
-            array(new Same('10'), new In(array(), true)),
-            array(new Same('10'), new In(array('10', '11'), true)),
+            [new Same('10'), new In([10], true)],
+            [new Same('10'), new In(['10'], false)],
+            [new Same('10'), new In([], true)],
+            [new Same('10'), new In(['10', '11'], true)],
 
-            array(new NotSame('10'), new NotSame('11')),
-            array(new NotSame('10'), new NotSame(10)),
-            array(new NotSame('10'), new NotEquals('10')),
+            [new NotSame('10'), new NotSame('11')],
+            [new NotSame('10'), new NotSame(10)],
+            [new NotSame('10'), new NotEquals('10')],
 
-            array(new Equals('10'), new Equals('11')),
-            array(new Equals('10'), new In(array('10'), true)),
-            array(new Equals('10'), new In(array(), false)),
-            array(new Equals('10'), new In(array('10', '11'), false)),
+            [new Equals('10'), new Equals('11')],
+            [new Equals('10'), new In(['10'], true)],
+            [new Equals('10'), new In([], false)],
+            [new Equals('10'), new In(['10', '11'], false)],
 
-            array(new GreaterThan('10'), new GreaterThan('11')),
-            array(new GreaterThan('10'), new LessThan('10')),
+            [new GreaterThan('10'), new GreaterThan('11')],
+            [new GreaterThan('10'), new LessThan('10')],
 
-            array(new GreaterThanEqual('10'), new GreaterThanEqual('11')),
-            array(new GreaterThanEqual('10'), new LessThan('10')),
+            [new GreaterThanEqual('10'), new GreaterThanEqual('11')],
+            [new GreaterThanEqual('10'), new LessThan('10')],
 
-            array(new LessThan('10'), new LessThan('11')),
-            array(new LessThan('10'), new GreaterThan('10')),
+            [new LessThan('10'), new LessThan('11')],
+            [new LessThan('10'), new GreaterThan('10')],
 
-            array(new LessThanEqual('10'), new LessThanEqual('11')),
-            array(new LessThanEqual('10'), new GreaterThan('10')),
+            [new LessThanEqual('10'), new LessThanEqual('11')],
+            [new LessThanEqual('10'), new GreaterThan('10')],
 
-            array(new IsInstanceOf('SplFileInfo'), new IsInstanceOf('DateTime')),
+            [new IsInstanceOf('SplFileInfo'), new IsInstanceOf('DateTime')],
 
-            array(new KeyExists('10'), new KeyExists('11')),
-            array(new KeyExists('foo'), new KeyExists(0)),
-            array(new KeyExists('10'), new Equals('10')),
+            [new KeyExists('10'), new KeyExists('11')],
+            [new KeyExists('foo'), new KeyExists(0)],
+            [new KeyExists('10'), new Equals('10')],
 
-            array(new KeyNotExists('10'), new KeyNotExists('11')),
-            array(new KeyNotExists('foo'), new KeyNotExists(0)),
-            array(new KeyNotExists('10'), new Equals('10')),
+            [new KeyNotExists('10'), new KeyNotExists('11')],
+            [new KeyNotExists('foo'), new KeyNotExists(0)],
+            [new KeyNotExists('10'), new Equals('10')],
 
-            array(new Matches('10'), new Matches(10)),
-            array(new Matches('10'), new Equals('10')),
+            [new Matches('10'), new Matches(10)],
+            [new Matches('10'), new Equals('10')],
 
-            array(new In(array('10'), true), new In(array('11'), true)),
-            array(new In(array('10'), true), new In(array(10), true)),
-            array(new In(array('10'), true), new In(array('11'), false)),
-            array(new In(array('10'), true), new IsEmpty()),
+            [new In(['10'], true), new In(['11'], true)],
+            [new In(['10'], true), new In([10], true)],
+            [new In(['10'], true), new In(['11'], false)],
+            [new In(['10'], true), new IsEmpty()],
 
-            array(new StartsWith('10'), new StartsWith('11')),
-            array(new StartsWith('foo'), new StartsWith(0)),
-            array(new StartsWith('10'), new Equals('10')),
+            [new StartsWith('10'), new StartsWith('11')],
+            [new StartsWith('foo'), new StartsWith(0)],
+            [new StartsWith('10'), new Equals('10')],
 
-            array(new EndsWith('10'), new EndsWith('11')),
-            array(new EndsWith('foo'), new EndsWith(0)),
-            array(new EndsWith('10'), new Equals('10')),
+            [new EndsWith('10'), new EndsWith('11')],
+            [new EndsWith('foo'), new EndsWith(0)],
+            [new EndsWith('10'), new Equals('10')],
 
-            array(new Contains('10'), new Contains('11')),
-            array(new Contains('foo'), new Contains(0)),
-            array(new Contains('10'), new Equals('10')),
+            [new Contains('10'), new Contains('11')],
+            [new Contains('foo'), new Contains(0)],
+            [new Contains('10'), new Equals('10')],
 
-            array(new Not(new Same('10')), new Not(new Same(10))),
-            array(new Not(new Same('10')), new Same(10)),
+            [new Not(new Same('10')), new Not(new Same(10))],
+            [new Not(new Same('10')), new Same(10)],
 
-            array(new Key('foo', new Same('10')), new Key('bar', new Same('10'))),
-            array(new Key('foo', new Same('10')), new Key(0, new Same('10'))),
-            array(new Key('foo', new Same('10')), new Key('foo', new Same(10))),
-            array(new Key('foo', new Same('10')), new Same('10')),
+            [new Key('foo', new Same('10')), new Key('bar', new Same('10'))],
+            [new Key('foo', new Same('10')), new Key(0, new Same('10'))],
+            [new Key('foo', new Same('10')), new Key('foo', new Same(10))],
+            [new Key('foo', new Same('10')), new Same('10')],
 
-            array(new Property('foo', new Same('10')), new Property('bar', new Same('10'))),
-            array(new Property('foo', new Same('10')), new Property('foo', new Same(10))),
-            array(new Property('foo', new Same('10')), new Same('10')),
+            [new Property('foo', new Same('10')), new Property('bar', new Same('10'))],
+            [new Property('foo', new Same('10')), new Property('foo', new Same(10))],
+            [new Property('foo', new Same('10')), new Same('10')],
 
-            array(new Method('getFoo', array(42), new Same('10')), new Method('getFoo', array('42'), new Same('10'))),
-            array(new Method('getFoo', array(42), new Same('10')), new Method('getFoo', array(42, true), new Same('10'))),
-            array(new Method('getFoo', array(), new Same('10')), new Method('getBar', array(), new Same('10'))),
-            array(new Method('getFoo', array(), new Same('10')), new Method('getFoo', array(), new Same(10))),
-            array(new Method('getFoo', array(), new Same('10')), new Same('10')),
+            [new Method('getFoo', [42], new Same('10')), new Method('getFoo', ['42'], new Same('10'))],
+            [new Method('getFoo', [42], new Same('10')), new Method('getFoo', [42, true], new Same('10'))],
+            [new Method('getFoo', [], new Same('10')), new Method('getBar', [], new Same('10'))],
+            [new Method('getFoo', [], new Same('10')), new Method('getFoo', [], new Same(10))],
+            [new Method('getFoo', [], new Same('10')), new Same('10')],
 
-            array(new AtLeast(1, new Same('10')), new AtLeast(2, new Same('10'))),
-            array(new AtLeast(1, new Same('10')), new AtLeast(1, new Same(10))),
-            array(new AtLeast(1, new Same('10')), new Same('10')),
+            [new AtLeast(1, new Same('10')), new AtLeast(2, new Same('10'))],
+            [new AtLeast(1, new Same('10')), new AtLeast(1, new Same(10))],
+            [new AtLeast(1, new Same('10')), new Same('10')],
 
-            array(new AtMost(1, new Same('10')), new AtMost(2, new Same('10'))),
-            array(new AtMost(1, new Same('10')), new AtMost(1, new Same(10))),
-            array(new AtMost(1, new Same('10')), new Same('10')),
+            [new AtMost(1, new Same('10')), new AtMost(2, new Same('10'))],
+            [new AtMost(1, new Same('10')), new AtMost(1, new Same(10))],
+            [new AtMost(1, new Same('10')), new Same('10')],
 
-            array(new Exactly(1, new Same('10')), new Exactly(2, new Same('10'))),
-            array(new Exactly(1, new Same('10')), new Exactly(1, new Same(10))),
-            array(new Exactly(1, new Same('10')), new Same('10')),
+            [new Exactly(1, new Same('10')), new Exactly(2, new Same('10'))],
+            [new Exactly(1, new Same('10')), new Exactly(1, new Same(10))],
+            [new Exactly(1, new Same('10')), new Same('10')],
 
-            array(new All(new Same('10')), new All(new Same(10))),
-            array(new All(new Same('10')), new Same('10')),
+            [new All(new Same('10')), new All(new Same(10))],
+            [new All(new Same('10')), new Same('10')],
 
-            array(new Count(new Same('10')), new Count(new Same(10))),
-            array(new Count(new Same('10')), new Same('10')),
+            [new Count(new Same('10')), new Count(new Same(10))],
+            [new Count(new Same('10')), new Same('10')],
 
-            array(new AlwaysTrue(), new Same(10)),
+            [new AlwaysTrue(), new Same(10)],
 
-            array(new AlwaysFalse(), new Same(10)),
-        );
+            [new AlwaysFalse(), new Same(10)],
+        ];
     }
 
     /**

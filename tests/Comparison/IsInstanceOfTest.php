@@ -29,8 +29,8 @@ class IsInstanceOfTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($expr->evaluate(new SplFileInfo(__DIR__)));
         $this->assertTrue($expr->evaluate(new DirectoryIterator(__DIR__)));
-        $this->assertFalse($expr->evaluate((object) array()));
-        $this->assertFalse($expr->evaluate(array()));
+        $this->assertFalse($expr->evaluate((object) []));
+        $this->assertFalse($expr->evaluate([]));
         $this->assertFalse($expr->evaluate('foobar'));
     }
 

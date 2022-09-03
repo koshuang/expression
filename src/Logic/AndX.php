@@ -29,14 +29,14 @@ class AndX implements Expression
     /**
      * @var Expression[]
      */
-    private $conjuncts = array();
+    private $conjuncts = [];
 
     /**
      * Creates a conjunction of the given expressions.
      *
      * @param Expression[] $conjuncts The conjuncts.
      */
-    public function __construct(array $conjuncts = array())
+    public function __construct(array $conjuncts = [])
     {
         foreach ($conjuncts as $conjunct) {
             if ($conjunct instanceof self) {
@@ -107,7 +107,7 @@ class AndX implements Expression
 
     public function andMethod($methodName, $args)
     {
-        return $this->andX(call_user_func_array(array('Webmozart\Expression\Expr', 'method'), func_get_args()));
+        return $this->andX(call_user_func_array(['Webmozart\Expression\Expr', 'method'], func_get_args()));
     }
 
     public function andProperty($propertyName, Expression $expr)

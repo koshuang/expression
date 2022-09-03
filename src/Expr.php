@@ -99,14 +99,11 @@ class Expr
     public static function filter($collection, Expression $expr)
     {
         if (is_array($collection)) {
-            return array_filter($collection, array($expr, 'evaluate'));
+            return array_filter($collection, [$expr, 'evaluate']);
         }
 
         if (!($collection instanceof Traversable && $collection instanceof ArrayAccess)) {
-            throw new InvalidArgumentException(sprintf(
-                'Expected an array or an instance of Traversable and ArrayAccess. Got: %s',
-                is_object($collection) ? get_class($collection) : gettype($collection)
-            ));
+            throw new InvalidArgumentException(sprintf('Expected an array or an instance of Traversable and ArrayAccess. Got: %s', is_object($collection) ? get_class($collection) : gettype($collection)));
         }
 
         $clone = clone $collection;

@@ -35,33 +35,15 @@ class ExpressionComparator extends Comparator
     /**
      * {@inheritdoc}
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
     {
         if (get_class($actual) !== get_class($expected)) {
-            throw new ComparisonFailure(
-                $expected,
-                $actual,
-                $this->exporter->export($expected),
-                $this->exporter->export($actual),
-                false,
-                sprintf(
-                    '%s is not instance of expected class "%s".',
-                    $this->exporter->export($actual),
-                    get_class($expected)
-                )
-            );
+            throw new ComparisonFailure($expected, $actual, $this->exporter->export($expected), $this->exporter->export($actual), false, sprintf('%s is not instance of expected class "%s".', $this->exporter->export($actual), get_class($expected)));
         }
 
         /** @var Expression $actual */
         if (!$actual->equivalentTo($expected)) {
-            throw new ComparisonFailure(
-                $expected,
-                $actual,
-                $expected->toString(),
-                $actual->toString(),
-                false,
-                'Failed asserting that two expressions are equal.'
-            );
+            throw new ComparisonFailure($expected, $actual, $expected->toString(), $actual->toString(), false, 'Failed asserting that two expressions are equal.');
         }
     }
 }

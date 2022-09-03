@@ -32,7 +32,7 @@ class LiteralTest extends PHPUnit_Framework_TestCase
         $literal = new TestLiteral();
         $expr = new Same('10');
 
-        $this->assertEquals(new AndX(array($literal, $expr)), $literal->andX($expr));
+        $this->assertEquals(new AndX([$literal, $expr]), $literal->andX($expr));
     }
 
     public function testAndXIgnoresDuplicates()
@@ -91,9 +91,9 @@ class LiteralTest extends PHPUnit_Framework_TestCase
         $method = 'and'.ucfirst($method);
         $literal = new TestLiteral();
 
-        $result = call_user_func_array(array($literal, $method), $args);
+        $result = call_user_func_array([$literal, $method], $args);
 
-        $this->assertEquals(new AndX(array($literal, $expected)), $result);
+        $this->assertEquals(new AndX([$literal, $expected]), $result);
     }
 
     public function testOrX()
@@ -101,7 +101,7 @@ class LiteralTest extends PHPUnit_Framework_TestCase
         $literal = new TestLiteral();
         $expr = new Same('10');
 
-        $this->assertEquals(new OrX(array($literal, $expr)), $literal->orX($expr));
+        $this->assertEquals(new OrX([$literal, $expr]), $literal->orX($expr));
     }
 
     public function testOrXIgnoresDuplicates()
@@ -160,8 +160,8 @@ class LiteralTest extends PHPUnit_Framework_TestCase
         $method = 'or'.ucfirst($method);
         $literal = new TestLiteral();
 
-        $result = call_user_func_array(array($literal, $method), $args);
+        $result = call_user_func_array([$literal, $method], $args);
 
-        $this->assertEquals(new OrX(array($literal, $expected)), $result);
+        $this->assertEquals(new OrX([$literal, $expected]), $result);
     }
 }

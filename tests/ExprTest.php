@@ -54,176 +54,176 @@ class ExprTest extends PHPUnit_Framework_TestCase
 {
     public static function getComparisons()
     {
-        return array(
-            array(
+        return [
+            [
                 'keyExists',
-                array('key'),
+                ['key'],
                 new KeyExists('key'),
-            ),
-            array(
+            ],
+            [
                 'keyNotExists',
-                array('key'),
+                ['key'],
                 new KeyNotExists('key'),
-            ),
-            array(
+            ],
+            [
                 'null',
-                array(),
+                [],
                 new Same(null),
-            ),
-            array(
+            ],
+            [
                 'notNull',
-                array(),
+                [],
                 new NotSame(null),
-            ),
-            array(
+            ],
+            [
                 'isEmpty',
-                array(),
+                [],
                 new IsEmpty(),
-            ),
-            array(
+            ],
+            [
                 'isInstanceOf',
-                array('DateTime'),
+                ['DateTime'],
                 new IsInstanceOf('DateTime'),
-            ),
-            array(
+            ],
+            [
                 'notEmpty',
-                array(),
+                [],
                 new Not(new IsEmpty()),
-            ),
-            array(
+            ],
+            [
                 'equals',
-                array(10),
+                [10],
                 new Equals(10),
-            ),
-            array(
+            ],
+            [
                 'notEquals',
-                array(10),
+                [10],
                 new NotEquals(10),
-            ),
-            array(
+            ],
+            [
                 'same',
-                array(10),
+                [10],
                 new Same(10),
-            ),
-            array(
+            ],
+            [
                 'notSame',
-                array(10),
+                [10],
                 new NotSame(10),
-            ),
-            array(
+            ],
+            [
                 'greaterThan',
-                array(10),
+                [10],
                 new GreaterThan(10),
-            ),
-            array(
+            ],
+            [
                 'greaterThanEqual',
-                array(10),
+                [10],
                 new GreaterThanEqual(10),
-            ),
-            array(
+            ],
+            [
                 'lessThan',
-                array(10),
+                [10],
                 new LessThan(10),
-            ),
-            array(
+            ],
+            [
                 'lessThanEqual',
-                array(10),
+                [10],
                 new LessThanEqual(10),
-            ),
-            array(
+            ],
+            [
                 'matches',
-                array('~^\d{4}$~'),
+                ['~^\d{4}$~'],
                 new Matches('~^\d{4}$~'),
-            ),
-            array(
+            ],
+            [
                 'startsWith',
-                array('Thomas'),
+                ['Thomas'],
                 new StartsWith('Thomas'),
-            ),
-            array(
+            ],
+            [
                 'endsWith',
-                array('.css'),
+                ['.css'],
                 new EndsWith('.css'),
-            ),
-            array(
+            ],
+            [
                 'contains',
-                array('css'),
+                ['css'],
                 new Contains('css'),
-            ),
-            array(
+            ],
+            [
                 'in',
-                array(array('1', '2', '3')),
-                new In(array('1', '2', '3')),
-            ),
-        );
+                [['1', '2', '3']],
+                new In(['1', '2', '3']),
+            ],
+        ];
     }
 
     public static function getMethodTests()
     {
         $expr = new Same('10');
 
-        return array_merge(array(
-            array(
+        return array_merge([
+            [
                 'not',
-                array($expr),
+                [$expr],
                 new Not($expr),
-            ),
-            array(
+            ],
+            [
                 'key',
-                array('key', $expr),
+                ['key', $expr],
                 new Key('key', $expr),
-            ),
-            array(
+            ],
+            [
                 'method',
-                array('getFoo', $expr),
-                new Method('getFoo', array(), $expr),
-            ),
-            array(
+                ['getFoo', $expr],
+                new Method('getFoo', [], $expr),
+            ],
+            [
                 'method',
-                array('getFoo', 42, 'bar', $expr),
-                new Method('getFoo', array(42, 'bar'), $expr),
-            ),
-            array(
+                ['getFoo', 42, 'bar', $expr],
+                new Method('getFoo', [42, 'bar'], $expr),
+            ],
+            [
                 'property',
-                array('prop', $expr),
+                ['prop', $expr],
                 new Property('prop', $expr),
-            ),
-            array(
+            ],
+            [
                 'atLeast',
-                array(2, $expr),
+                [2, $expr],
                 new AtLeast(2, $expr),
-            ),
-            array(
+            ],
+            [
                 'atMost',
-                array(2, $expr),
+                [2, $expr],
                 new AtMost(2, $expr),
-            ),
-            array(
+            ],
+            [
                 'exactly',
-                array(2, $expr),
+                [2, $expr],
                 new Exactly(2, $expr),
-            ),
-            array(
+            ],
+            [
                 'all',
-                array($expr),
+                [$expr],
                 new All($expr),
-            ),
-            array(
+            ],
+            [
                 'count',
-                array($expr),
+                [$expr],
                 new Count($expr),
-            ),
-            array(
+            ],
+            [
                 'true',
-                array(),
+                [],
                 new AlwaysTrue(),
-            ),
-            array(
+            ],
+            [
                 'false',
-                array(),
+                [],
                 new AlwaysFalse(),
-            ),
-        ), self::getComparisons());
+            ],
+        ], self::getComparisons());
     }
 
     /**
@@ -231,7 +231,7 @@ class ExprTest extends PHPUnit_Framework_TestCase
      */
     public function testCreate($method, $args, $expected)
     {
-        $this->assertEquals($expected, call_user_func_array(array('Webmozart\Expression\Expr', $method), $args));
+        $this->assertEquals($expected, call_user_func_array(['Webmozart\Expression\Expr', $method], $args));
     }
 
     public function testExpr()
@@ -243,16 +243,16 @@ class ExprTest extends PHPUnit_Framework_TestCase
 
     public function testAndX()
     {
-        $andX = new AndX(array(new GreaterThan(5), new LessThan(10)));
+        $andX = new AndX([new GreaterThan(5), new LessThan(10)]);
 
-        $this->assertEquals($andX, Expr::andX(array(Expr::greaterThan(5), Expr::lessThan(10))));
+        $this->assertEquals($andX, Expr::andX([Expr::greaterThan(5), Expr::lessThan(10)]));
     }
 
     public function testOrX()
     {
-        $andX = new OrX(array(new LessThan(5), new GreaterThan(10)));
+        $andX = new OrX([new LessThan(5), new GreaterThan(10)]);
 
-        $this->assertEquals($andX, Expr::orX(array(Expr::lessThan(5), Expr::greaterThan(10))));
+        $this->assertEquals($andX, Expr::orX([Expr::lessThan(5), Expr::greaterThan(10)]));
     }
 
     public function testFilterArray()

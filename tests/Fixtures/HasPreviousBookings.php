@@ -18,6 +18,6 @@ class HasPreviousBookings extends Method
 {
     public function __construct()
     {
-        parent::__construct('getBookings', array(), Expr::count(Expr::greaterThan(0)));
+        parent::__construct('getBookings', [], Expr::count(Expr::greaterThan(0)));
     }
 }

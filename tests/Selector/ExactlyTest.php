@@ -30,21 +30,21 @@ class ExactlyTest extends PHPUnit_Framework_TestCase
         $exactly1 = new Exactly(1, new GreaterThan(10));
         $exactly2 = new Exactly(2, new GreaterThan(10));
 
-        $this->assertFalse($exactly1->evaluate(array(9, 10, 11, 12)));
-        $this->assertTrue($exactly1->evaluate(array(9, 10, 11)));
-        $this->assertFalse($exactly1->evaluate(array(9, 10)));
-        $this->assertFalse($exactly1->evaluate(new ArrayIterator(array(9, 10, 11, 12))));
-        $this->assertTrue($exactly1->evaluate(new ArrayIterator(array(9, 10, 11))));
-        $this->assertFalse($exactly1->evaluate(new ArrayIterator(array(9, 10))));
+        $this->assertFalse($exactly1->evaluate([9, 10, 11, 12]));
+        $this->assertTrue($exactly1->evaluate([9, 10, 11]));
+        $this->assertFalse($exactly1->evaluate([9, 10]));
+        $this->assertFalse($exactly1->evaluate(new ArrayIterator([9, 10, 11, 12])));
+        $this->assertTrue($exactly1->evaluate(new ArrayIterator([9, 10, 11])));
+        $this->assertFalse($exactly1->evaluate(new ArrayIterator([9, 10])));
 
-        $this->assertTrue($exactly2->evaluate(array(9, 10, 11, 12)));
-        $this->assertFalse($exactly2->evaluate(array(9, 10, 11)));
-        $this->assertFalse($exactly2->evaluate(array(9, 10)));
-        $this->assertTrue($exactly2->evaluate(new ArrayIterator(array(9, 10, 11, 12))));
-        $this->assertFalse($exactly2->evaluate(new ArrayIterator(array(9, 10, 11))));
-        $this->assertFalse($exactly2->evaluate(new ArrayIterator(array(9, 10))));
+        $this->assertTrue($exactly2->evaluate([9, 10, 11, 12]));
+        $this->assertFalse($exactly2->evaluate([9, 10, 11]));
+        $this->assertFalse($exactly2->evaluate([9, 10]));
+        $this->assertTrue($exactly2->evaluate(new ArrayIterator([9, 10, 11, 12])));
+        $this->assertFalse($exactly2->evaluate(new ArrayIterator([9, 10, 11])));
+        $this->assertFalse($exactly2->evaluate(new ArrayIterator([9, 10])));
 
-        $this->assertFalse($exactly1->evaluate(array()));
+        $this->assertFalse($exactly1->evaluate([]));
         $this->assertFalse($exactly1->evaluate('foobar'));
     }
 
@@ -52,10 +52,10 @@ class ExactlyTest extends PHPUnit_Framework_TestCase
     {
         $expr1 = new Exactly(1, new GreaterThan(10));
         $expr2 = new Exactly(2, new EndsWith('.css'));
-        $expr3 = new Exactly(3, new AndX(array(
+        $expr3 = new Exactly(3, new AndX([
             new GreaterThan(10),
             new EndsWith('.css'),
-        )));
+        ]));
 
         $this->assertSame('exactly(1, >10)', $expr1->toString());
         $this->assertSame('exactly(2, endsWith(".css"))', $expr2->toString());

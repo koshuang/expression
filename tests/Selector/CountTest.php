@@ -27,14 +27,14 @@ class CountTest extends PHPUnit_Framework_TestCase
     {
         $all = new Count(new GreaterThan(1));
 
-        $this->assertTrue($all->evaluate(array(1, 2, 3)));
-        $this->assertTrue($all->evaluate(array(1, 2)));
-        $this->assertFalse($all->evaluate(array(1)));
-        $this->assertTrue($all->evaluate(new ArrayIterator(array(1, 2, 3))));
-        $this->assertTrue($all->evaluate(new ArrayIterator(array(1, 2))));
-        $this->assertFalse($all->evaluate(new ArrayIterator(array(1))));
+        $this->assertTrue($all->evaluate([1, 2, 3]));
+        $this->assertTrue($all->evaluate([1, 2]));
+        $this->assertFalse($all->evaluate([1]));
+        $this->assertTrue($all->evaluate(new ArrayIterator([1, 2, 3])));
+        $this->assertTrue($all->evaluate(new ArrayIterator([1, 2])));
+        $this->assertFalse($all->evaluate(new ArrayIterator([1])));
 
-        $this->assertFalse($all->evaluate(array()));
+        $this->assertFalse($all->evaluate([]));
         $this->assertFalse($all->evaluate('foobar'));
     }
 

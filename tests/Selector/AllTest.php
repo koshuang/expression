@@ -29,16 +29,16 @@ class AllTest extends PHPUnit_Framework_TestCase
     {
         $all = new All(new GreaterThan(10));
 
-        $this->assertTrue($all->evaluate(array(11, 12, 13)));
-        $this->assertTrue($all->evaluate(array(11, 12)));
-        $this->assertFalse($all->evaluate(array(10, 11, 12)));
-        $this->assertFalse($all->evaluate(array(9, 10, 11, 12)));
-        $this->assertTrue($all->evaluate(new ArrayIterator(array(11, 12, 13))));
-        $this->assertTrue($all->evaluate(new ArrayIterator(array(11, 12))));
-        $this->assertFalse($all->evaluate(new ArrayIterator(array(10, 11, 12))));
-        $this->assertFalse($all->evaluate(new ArrayIterator(array(9, 10, 11, 12))));
+        $this->assertTrue($all->evaluate([11, 12, 13]));
+        $this->assertTrue($all->evaluate([11, 12]));
+        $this->assertFalse($all->evaluate([10, 11, 12]));
+        $this->assertFalse($all->evaluate([9, 10, 11, 12]));
+        $this->assertTrue($all->evaluate(new ArrayIterator([11, 12, 13])));
+        $this->assertTrue($all->evaluate(new ArrayIterator([11, 12])));
+        $this->assertFalse($all->evaluate(new ArrayIterator([10, 11, 12])));
+        $this->assertFalse($all->evaluate(new ArrayIterator([9, 10, 11, 12])));
 
-        $this->assertTrue($all->evaluate(array()));
+        $this->assertTrue($all->evaluate([]));
         $this->assertFalse($all->evaluate('foobar'));
     }
 
@@ -46,10 +46,10 @@ class AllTest extends PHPUnit_Framework_TestCase
     {
         $expr1 = new All(new GreaterThan(10));
         $expr2 = new All(new EndsWith('.css'));
-        $expr3 = new All(new AndX(array(
+        $expr3 = new All(new AndX([
             new GreaterThan(10),
             new EndsWith('.css'),
-        )));
+        ]));
 
         $this->assertSame('all(>10)', $expr1->toString());
         $this->assertSame('all(endsWith(".css"))', $expr2->toString());

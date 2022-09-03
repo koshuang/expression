@@ -25,8 +25,8 @@ class KeyExistsTest extends PHPUnit_Framework_TestCase
     {
         $expr = new KeyExists('key');
 
-        $this->assertTrue($expr->evaluate(array('key' => 11)));
-        $this->assertFalse($expr->evaluate(array()));
+        $this->assertTrue($expr->evaluate(['key' => 11]));
+        $this->assertFalse($expr->evaluate([]));
         $this->assertFalse($expr->evaluate('foobar'));
     }
 

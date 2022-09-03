@@ -15,7 +15,7 @@ class Customer
 {
     private $premium = false;
 
-    private $bookings = array();
+    private $bookings = [];
 
     public function setPremium($premium)
     {

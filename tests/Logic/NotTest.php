@@ -35,9 +35,9 @@ class NotTest extends PHPUnit_Framework_TestCase
 
     public function testEquivalentTo()
     {
-        $expr1 = new Not(new OrX(array(new LessThan(0), new GreaterThan(10))));
-        $expr2 = new Not(new OrX(array(new GreaterThan(10), new LessThan(0))));
-        $expr3 = new Not(new OrX(array(new GreaterThan(10))));
+        $expr1 = new Not(new OrX([new LessThan(0), new GreaterThan(10)]));
+        $expr2 = new Not(new OrX([new GreaterThan(10), new LessThan(0)]));
+        $expr3 = new Not(new OrX([new GreaterThan(10)]));
 
         $this->assertTrue($expr1->equivalentTo($expr2));
         $this->assertFalse($expr2->equivalentTo($expr3));
@@ -47,7 +47,7 @@ class NotTest extends PHPUnit_Framework_TestCase
     public function testToString()
     {
         $expr1 = new Not(new StartsWith('Thomas'));
-        $expr2 = new Not(new OrX(array(new GreaterThan(10), new LessThan(0))));
+        $expr2 = new Not(new OrX([new GreaterThan(10), new LessThan(0)]));
 
         $this->assertSame('not(startsWith("Thomas"))', $expr1->toString());
         $this->assertSame('not(>10 || <0)', $expr2->toString());

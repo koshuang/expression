@@ -65,7 +65,7 @@ class Equals extends Literal
     public function equivalentTo(Expression $other)
     {
         if ($other instanceof In && !$other->isStrict()) {
-            return array($this->comparedValue) == $other->getAcceptedValues();
+            return [$this->comparedValue] == $other->getAcceptedValues();
         }
 
         // Since this class is final, we can check with instanceof

@@ -28,9 +28,9 @@ class KeyTest extends PHPUnit_Framework_TestCase
     {
         $expr = new Key('key', new GreaterThan(10));
 
-        $this->assertTrue($expr->evaluate(array('key' => 11)));
-        $this->assertFalse($expr->evaluate(array('key' => 9)));
-        $this->assertFalse($expr->evaluate(array()));
+        $this->assertTrue($expr->evaluate(['key' => 11]));
+        $this->assertFalse($expr->evaluate(['key' => 9]));
+        $this->assertFalse($expr->evaluate([]));
         $this->assertFalse($expr->evaluate('foobar'));
     }
 
@@ -38,10 +38,10 @@ class KeyTest extends PHPUnit_Framework_TestCase
     {
         $expr1 = new Key('name', new GreaterThan(10));
         $expr2 = new Key('name', new EndsWith('.css'));
-        $expr3 = new Key('name', new AndX(array(
+        $expr3 = new Key('name', new AndX([
             new GreaterThan(10),
             new EndsWith('.css'),
-        )));
+        ]));
 
         $this->assertSame('name>10', $expr1->toString());
         $this->assertSame('name.endsWith(".css")', $expr2->toString());

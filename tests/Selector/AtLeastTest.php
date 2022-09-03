@@ -30,21 +30,21 @@ class AtLeastTest extends PHPUnit_Framework_TestCase
         $atLeast1 = new AtLeast(1, new GreaterThan(10));
         $atLeast2 = new AtLeast(2, new GreaterThan(10));
 
-        $this->assertTrue($atLeast1->evaluate(array(9, 10, 11, 12)));
-        $this->assertTrue($atLeast1->evaluate(array(9, 10, 11)));
-        $this->assertFalse($atLeast1->evaluate(array(9, 10)));
-        $this->assertTrue($atLeast1->evaluate(new ArrayIterator(array(9, 10, 11, 12))));
-        $this->assertTrue($atLeast1->evaluate(new ArrayIterator(array(9, 10, 11))));
-        $this->assertFalse($atLeast1->evaluate(new ArrayIterator(array(9, 10))));
+        $this->assertTrue($atLeast1->evaluate([9, 10, 11, 12]));
+        $this->assertTrue($atLeast1->evaluate([9, 10, 11]));
+        $this->assertFalse($atLeast1->evaluate([9, 10]));
+        $this->assertTrue($atLeast1->evaluate(new ArrayIterator([9, 10, 11, 12])));
+        $this->assertTrue($atLeast1->evaluate(new ArrayIterator([9, 10, 11])));
+        $this->assertFalse($atLeast1->evaluate(new ArrayIterator([9, 10])));
 
-        $this->assertTrue($atLeast2->evaluate(array(9, 10, 11, 12)));
-        $this->assertFalse($atLeast2->evaluate(array(9, 10, 11)));
-        $this->assertFalse($atLeast2->evaluate(array(9, 10)));
-        $this->assertTrue($atLeast2->evaluate(new ArrayIterator(array(9, 10, 11, 12))));
-        $this->assertFalse($atLeast2->evaluate(new ArrayIterator(array(9, 10, 11))));
-        $this->assertFalse($atLeast2->evaluate(new ArrayIterator(array(9, 10))));
+        $this->assertTrue($atLeast2->evaluate([9, 10, 11, 12]));
+        $this->assertFalse($atLeast2->evaluate([9, 10, 11]));
+        $this->assertFalse($atLeast2->evaluate([9, 10]));
+        $this->assertTrue($atLeast2->evaluate(new ArrayIterator([9, 10, 11, 12])));
+        $this->assertFalse($atLeast2->evaluate(new ArrayIterator([9, 10, 11])));
+        $this->assertFalse($atLeast2->evaluate(new ArrayIterator([9, 10])));
 
-        $this->assertFalse($atLeast1->evaluate(array()));
+        $this->assertFalse($atLeast1->evaluate([]));
         $this->assertFalse($atLeast1->evaluate('foobar'));
     }
 
@@ -52,10 +52,10 @@ class AtLeastTest extends PHPUnit_Framework_TestCase
     {
         $expr1 = new AtLeast(1, new GreaterThan(10));
         $expr2 = new AtLeast(2, new EndsWith('.css'));
-        $expr3 = new AtLeast(3, new AndX(array(
+        $expr3 = new AtLeast(3, new AndX([
             new GreaterThan(10),
             new EndsWith('.css'),
-        )));
+        ]));
 
         $this->assertSame('atLeast(1, >10)', $expr1->toString());
         $this->assertSame('atLeast(2, endsWith(".css"))', $expr2->toString());

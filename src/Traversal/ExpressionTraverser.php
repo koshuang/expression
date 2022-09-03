@@ -32,7 +32,7 @@ class ExpressionTraverser
     /**
      * @var ExpressionVisitor[]
      */
-    private $visitors = array();
+    private $visitors = [];
 
     /**
      * Adds a visitor to the traverser.
@@ -143,7 +143,7 @@ class ExpressionTraverser
     private function traverseConjunction(AndX $expr)
     {
         $conjuncts1 = $expr->getConjuncts();
-        $conjuncts2 = array();
+        $conjuncts2 = [];
 
         foreach ($conjuncts1 as $conjunct) {
             if ($conjunct = $this->traverse($conjunct)) {
@@ -161,7 +161,7 @@ class ExpressionTraverser
     private function traverseDisjunction(OrX $expr)
     {
         $disjuncts1 = $expr->getDisjuncts();
-        $disjuncts2 = array();
+        $disjuncts2 = [];
 
         foreach ($disjuncts1 as $disjunct) {
             if ($disjunct = $this->traverse($disjunct)) {

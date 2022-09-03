@@ -23,7 +23,7 @@ class InTest extends PHPUnit_Framework_TestCase
 {
     public function testEvaluateStrict()
     {
-        $expr = new In(array('1', '2', '3'));
+        $expr = new In(['1', '2', '3']);
 
         $this->assertTrue($expr->evaluate('1'));
         $this->assertFalse($expr->evaluate(1));
@@ -35,7 +35,7 @@ class InTest extends PHPUnit_Framework_TestCase
 
     public function testEvaluateNonStrict()
     {
-        $expr = new In(array('1', '2', '3'), false);
+        $expr = new In(['1', '2', '3'], false);
 
         $this->assertTrue($expr->evaluate('1'));
         $this->assertTrue($expr->evaluate(1));
@@ -47,7 +47,7 @@ class InTest extends PHPUnit_Framework_TestCase
 
     public function testToString()
     {
-        $expr = new In(array('1', '2', '3'), false);
+        $expr = new In(['1', '2', '3'], false);
 
         $this->assertSame('in("1", "2", "3")', $expr->toString());
     }

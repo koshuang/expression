@@ -27,7 +27,7 @@ class MethodTest extends PHPUnit_Framework_TestCase
 {
     public function testEvaluate()
     {
-        $expr = new Method('getFoo', array(), new GreaterThan(10));
+        $expr = new Method('getFoo', [], new GreaterThan(10));
 
         $this->assertTrue($expr->evaluate(new MethodTest_TestClass(11)));
         $this->assertFalse($expr->evaluate(new MethodTest_TestClass(9)));
@@ -37,7 +37,7 @@ class MethodTest extends PHPUnit_Framework_TestCase
 
     public function testEvaluateWithArguments()
     {
-        $expr = new Method('getBar', array(2), new GreaterThan(10));
+        $expr = new Method('getBar', [2], new GreaterThan(10));
 
         $this->assertTrue($expr->evaluate(new MethodTest_TestClass(9)));
         $this->assertFalse($expr->evaluate(new MethodTest_TestClass(7)));
@@ -45,12 +45,12 @@ class MethodTest extends PHPUnit_Framework_TestCase
 
     public function testToString()
     {
-        $expr1 = new Method('getName', array(42, true), new GreaterThan(10));
-        $expr2 = new Method('getName', array('foo'), new EndsWith('.css'));
-        $expr3 = new Method('getName', array(new stdClass()), new AndX(array(
+        $expr1 = new Method('getName', [42, true], new GreaterThan(10));
+        $expr2 = new Method('getName', ['foo'], new EndsWith('.css'));
+        $expr3 = new Method('getName', [new stdClass()], new AndX([
             new GreaterThan(10),
             new EndsWith('.css'),
-        )));
+        ]));
 
         $this->assertSame('getName(42, true)>10', $expr1->toString());
         $this->assertSame('getName("foo").endsWith(".css")', $expr2->toString());

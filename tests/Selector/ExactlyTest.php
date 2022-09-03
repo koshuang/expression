@@ -12,7 +12,7 @@
 namespace Webmozart\Expression\Tests\Selector;
 
 use ArrayIterator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\EndsWith;
 use Webmozart\Expression\Constraint\GreaterThan;
 use Webmozart\Expression\Logic\AndX;
@@ -23,7 +23,7 @@ use Webmozart\Expression\Selector\Exactly;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class ExactlyTest extends PHPUnit_Framework_TestCase
+class ExactlyTest extends TestCase
 {
     public function testEvaluate()
     {

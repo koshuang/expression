@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Logic;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\GreaterThan;
 use Webmozart\Expression\Constraint\LessThan;
 use Webmozart\Expression\Constraint\StartsWith;
@@ -23,7 +23,7 @@ use Webmozart\Expression\Logic\OrX;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class NotTest extends PHPUnit_Framework_TestCase
+class NotTest extends TestCase
 {
     public function testEvaluate()
     {

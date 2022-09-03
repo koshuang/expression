@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\Same;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\Same;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class SameTest extends PHPUnit_Framework_TestCase
+class SameTest extends TestCase
 {
     public function testEvaluate()
     {

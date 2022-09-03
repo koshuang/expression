@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\EndsWith;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\EndsWith;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class EndsWithTest extends PHPUnit_Framework_TestCase
+class EndsWithTest extends TestCase
 {
     public function testEvaluate()
     {

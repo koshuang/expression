@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\LessThan;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\LessThan;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class LessThanTest extends PHPUnit_Framework_TestCase
+class LessThanTest extends TestCase
 {
     public function testEvaluate()
     {

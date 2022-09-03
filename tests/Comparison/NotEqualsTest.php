@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\NotEquals;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\NotEquals;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class NotEqualsTest extends PHPUnit_Framework_TestCase
+class NotEqualsTest extends TestCase
 {
     public function testEvaluate()
     {

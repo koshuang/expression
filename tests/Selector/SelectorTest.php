@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Selector;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\Same;
 use Webmozart\Expression\Tests\Selector\Fixtures\TestSelector;
 
@@ -20,7 +20,7 @@ use Webmozart\Expression\Tests\Selector\Fixtures\TestSelector;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class SelectorTest extends PHPUnit_Framework_TestCase
+class SelectorTest extends TestCase
 {
     public function testGetExpression()
     {

@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Logic;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\Same;
 use Webmozart\Expression\Expr;
 use Webmozart\Expression\Logic\AlwaysFalse;
@@ -25,7 +25,7 @@ use Webmozart\Expression\Tests\Logic\Fixtures\TestLiteral;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class LiteralTest extends PHPUnit_Framework_TestCase
+class LiteralTest extends TestCase
 {
     public function testAndX()
     {
@@ -81,6 +81,7 @@ class LiteralTest extends PHPUnit_Framework_TestCase
     {
         // tested separately
         if ('true' === $method || 'false' === $method) {
+            $this->assertTrue(true);
             return;
         }
 
@@ -150,6 +151,7 @@ class LiteralTest extends PHPUnit_Framework_TestCase
     {
         // tested separately
         if ('true' === $method || 'false' === $method) {
+            $this->assertTrue(true);
             return;
         }
 

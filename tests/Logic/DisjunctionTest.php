@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Logic;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\Contains;
 use Webmozart\Expression\Constraint\EndsWith;
 use Webmozart\Expression\Constraint\GreaterThan;
@@ -27,7 +27,7 @@ use Webmozart\Expression\Selector\Key;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class DisjunctionTest extends PHPUnit_Framework_TestCase
+class DisjunctionTest extends TestCase
 {
     public function testCreate()
     {
@@ -122,6 +122,7 @@ class DisjunctionTest extends PHPUnit_Framework_TestCase
     {
         // tested separately
         if ('true' === $method || 'false' === $method) {
+            $this->assertTrue(true);
             return;
         }
 

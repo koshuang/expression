@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Selector;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Webmozart\Expression\Constraint\EndsWith;
 use Webmozart\Expression\Constraint\GreaterThan;
@@ -23,7 +23,7 @@ use Webmozart\Expression\Selector\Method;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class MethodTest extends PHPUnit_Framework_TestCase
+class MethodTest extends TestCase
 {
     public function testEvaluate()
     {

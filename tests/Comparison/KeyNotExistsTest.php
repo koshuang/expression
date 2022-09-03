@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\KeyNotExists;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\KeyNotExists;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class KeyNotExistsTest extends PHPUnit_Framework_TestCase
+class KeyNotExistsTest extends TestCase
 {
     public function testEvaluate()
     {

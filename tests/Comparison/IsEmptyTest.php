@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\IsEmpty;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\IsEmpty;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class IsEmptyTest extends PHPUnit_Framework_TestCase
+class IsEmptyTest extends TestCase
 {
     public function testEvaluate()
     {

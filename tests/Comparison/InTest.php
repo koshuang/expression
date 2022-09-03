@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\In;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\In;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class InTest extends PHPUnit_Framework_TestCase
+class InTest extends TestCase
 {
     public function testEvaluateStrict()
     {

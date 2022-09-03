@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Logic;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Webmozart\Expression\Constraint\Same;
 use Webmozart\Expression\Logic\AlwaysFalse;
@@ -21,7 +21,7 @@ use Webmozart\Expression\Logic\AlwaysFalse;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class AlwaysFalseTest extends PHPUnit_Framework_TestCase
+class AlwaysFalseTest extends TestCase
 {
     public function testEvaluate()
     {

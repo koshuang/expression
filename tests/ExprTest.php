@@ -12,7 +12,7 @@
 namespace Webmozart\Expression\Tests;
 
 use ArrayObject;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\Contains;
 use Webmozart\Expression\Constraint\EndsWith;
 use Webmozart\Expression\Constraint\Equals;
@@ -50,7 +50,7 @@ use Webmozart\Expression\Selector\Property;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class ExprTest extends PHPUnit_Framework_TestCase
+class ExprTest extends TestCase
 {
     public static function getComparisons()
     {

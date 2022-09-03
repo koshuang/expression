@@ -11,8 +11,8 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
 use Webmozart\Expression\Constraint\Contains;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @since  1.0
@@ -20,7 +20,7 @@ use Webmozart\Expression\Constraint\Contains;
  * @author Bernhard Schussek <bschussek@gmail.com>
  * @author Stephan Wentz <stephan@wentz.it>
  */
-class ContainsTest extends PHPUnit_Framework_TestCase
+class ContainsTest extends TestCase
 {
     public function testEvaluate()
     {

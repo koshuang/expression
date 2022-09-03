@@ -12,7 +12,7 @@
 namespace Webmozart\Expression\Tests\Selector;
 
 use ArrayIterator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\EndsWith;
 use Webmozart\Expression\Constraint\GreaterThan;
 use Webmozart\Expression\Logic\AndX;
@@ -23,7 +23,7 @@ use Webmozart\Expression\Selector\AtLeast;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class AtLeastTest extends PHPUnit_Framework_TestCase
+class AtLeastTest extends TestCase
 {
     public function testEvaluate()
     {

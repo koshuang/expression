@@ -12,7 +12,7 @@
 namespace Webmozart\Expression\Tests\Selector;
 
 use ArrayIterator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\GreaterThan;
 use Webmozart\Expression\Selector\Count;
 
@@ -21,7 +21,7 @@ use Webmozart\Expression\Selector\Count;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class CountTest extends PHPUnit_Framework_TestCase
+class CountTest extends TestCase
 {
     public function testEvaluate()
     {

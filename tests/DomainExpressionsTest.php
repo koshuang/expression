@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Expr;
 use Webmozart\Expression\Tests\Fixtures\Customer;
 use Webmozart\Expression\Tests\Fixtures\HasPreviousBookings;
@@ -22,7 +22,7 @@ use Webmozart\Expression\Tests\Fixtures\IsPremium;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class DomainExpressionsTest extends PHPUnit_Framework_TestCase
+class DomainExpressionsTest extends TestCase
 {
     public function testDomainExpressions()
     {

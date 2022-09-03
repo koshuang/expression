@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\Matches;
 
 /**
@@ -19,7 +19,7 @@ use Webmozart\Expression\Constraint\Matches;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class MatchesTest extends PHPUnit_Framework_TestCase
+class MatchesTest extends TestCase
 {
     public function testEvaluate()
     {

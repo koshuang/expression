@@ -11,7 +11,7 @@
 
 namespace Webmozart\Expression\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Webmozart\Expression\Constraint\Contains;
 use Webmozart\Expression\Constraint\EndsWith;
 use Webmozart\Expression\Constraint\Equals;
@@ -47,7 +47,7 @@ use Webmozart\Expression\Selector\Property;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class EquivalenceTest extends PHPUnit_Framework_TestCase
+class EquivalenceTest extends TestCase
 {
     public function getEquivalentCriteria()
     {

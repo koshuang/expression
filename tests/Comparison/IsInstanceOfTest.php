@@ -12,7 +12,7 @@
 namespace Webmozart\Expression\Tests\Comparison;
 
 use DirectoryIterator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SplFileInfo;
 use Webmozart\Expression\Constraint\IsInstanceOf;
 
@@ -21,7 +21,7 @@ use Webmozart\Expression\Constraint\IsInstanceOf;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class IsInstanceOfTest extends PHPUnit_Framework_TestCase
+class IsInstanceOfTest extends TestCase
 {
     public function testEvaluate()
     {

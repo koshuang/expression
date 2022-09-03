@@ -75,7 +75,7 @@ class AtLeast extends Selector
             return false;
         }
 
-        /* @var static $other */
+        /** @var static $other */
         return $this->count === $other->count;
     }
 

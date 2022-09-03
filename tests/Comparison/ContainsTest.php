@@ -11,8 +11,8 @@
 
 namespace Webmozart\Expression\Tests\Comparison;
 
-use Webmozart\Expression\Constraint\Contains;
 use PHPUnit\Framework\TestCase;
+use Webmozart\Expression\Constraint\Contains;
 
 /**
  * @since  1.0

@@ -120,6 +120,7 @@ class ConjunctionTest extends TestCase
         // tested separately
         if ('true' === $method || 'false' === $method) {
             $this->assertTrue(true);
+
             return;
         }
 

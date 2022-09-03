@@ -21,12 +21,11 @@ use Webmozart\Expression\Expression;
  * @since  1.0
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
+ *
+ * {@inheritdoc}
  */
 class ExpressionComparator extends Comparator
 {
-    /**
-     * {@inheritdoc}
-     */
     public function accepts($expected, $actual)
     {
         return $expected instanceof Expression && $actual instanceof Expression;
@@ -34,6 +33,8 @@ class ExpressionComparator extends Comparator
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
     {

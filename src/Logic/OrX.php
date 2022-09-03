@@ -23,6 +23,8 @@ use Webmozart\Expression\Expression;
  * @since  1.0
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
+ *
+ * {@inheritdoc}
  */
 class OrX implements Expression
 {
@@ -60,6 +62,9 @@ class OrX implements Expression
         return $this->disjuncts;
     }
 
+    /**
+     * @return Expression
+     */
     public function orX(Expression $expr)
     {
         if ($expr instanceof AlwaysFalse) {
@@ -85,164 +90,254 @@ class OrX implements Expression
         return new self($disjuncts);
     }
 
+    /**
+     * @return Expression
+     */
     public function orNot(Expression $expr)
     {
         return $this->orX(Expr::not($expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function orTrue()
     {
         return Expr::true();
     }
 
+    /**
+     * @return Expression
+     */
     public function orFalse()
     {
         return $this;
     }
 
-    public function orKey($keyName, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function orKey(string $keyName, Expression $expr)
     {
         return $this->orX(Expr::key($keyName, $expr));
     }
 
-    public function orMethod($methodName, $args)
+    /**
+     * @return Expression
+     */
+    public function orMethod(string $methodName, mixed $args)
     {
         return $this->orX(call_user_func_array(['Webmozart\Expression\Expr', 'method'], func_get_args()));
     }
 
-    public function orProperty($propertyName, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function orProperty(string $propertyName, Expression $expr)
     {
         return $this->orX(Expr::property($propertyName, $expr));
     }
 
-    public function orAtLeast($count, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function orAtLeast(int $count, Expression $expr)
     {
         return $this->orX(Expr::atLeast($count, $expr));
     }
 
-    public function orAtMost($count, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function orAtMost(int $count, Expression $expr)
     {
         return $this->orX(Expr::atMost($count, $expr));
     }
 
-    public function orExactly($count, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function orExactly(int $count, Expression $expr)
     {
         return $this->orX(Expr::exactly($count, $expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function orCount(Expression $expr)
     {
         return $this->orX(Expr::count($expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function orAll(Expression $expr)
     {
         return $this->orX(Expr::all($expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function orNull()
     {
         return $this->orX(Expr::null());
     }
 
+    /**
+     * @return Expression
+     */
     public function orNotNull()
     {
         return $this->orX(Expr::notNull());
     }
 
+    /**
+     * @return Expression
+     */
     public function orEmpty()
     {
         return $this->orX(Expr::isEmpty());
     }
 
+    /**
+     * @return Expression
+     */
     public function orNotEmpty()
     {
         return $this->orX(Expr::notEmpty());
     }
 
-    public function orInstanceOf($className)
+    /**
+     * @return Expression
+     */
+    public function orInstanceOf(string $className)
     {
         return $this->orX(Expr::isInstanceOf($className));
     }
 
-    public function orEquals($value)
+    /**
+     * @return Expression
+     */
+    public function orEquals(mixed $value)
     {
         return $this->orX(Expr::equals($value));
     }
 
-    public function orNotEquals($value)
+    /**
+     * @return Expression
+     */
+    public function orNotEquals(mixed $value)
     {
         return $this->orX(Expr::notEquals($value));
     }
 
-    public function orSame($value)
+    /**
+     * @return Expression
+     */
+    public function orSame(mixed $value)
     {
         return $this->orX(Expr::same($value));
     }
 
-    public function orNotSame($value)
+    /**
+     * @return Expression
+     */
+    public function orNotSame(mixed $value)
     {
         return $this->orX(Expr::notSame($value));
     }
 
-    public function orGreaterThan($value)
+    /**
+     * @return Expression
+     */
+    public function orGreaterThan(mixed $value)
     {
         return $this->orX(Expr::greaterThan($value));
     }
 
-    public function orGreaterThanEqual($value)
+    /**
+     * @return Expression
+     */
+    public function orGreaterThanEqual(mixed $value)
     {
         return $this->orX(Expr::greaterThanEqual($value));
     }
 
-    public function orLessThan($value)
+    /**
+     * @return Expression
+     */
+    public function orLessThan(mixed $value)
     {
         return $this->orX(Expr::lessThan($value));
     }
 
-    public function orLessThanEqual($value)
+    /**
+     * @return Expression
+     */
+    public function orLessThanEqual(mixed $value)
     {
         return $this->orX(Expr::lessThanEqual($value));
     }
 
+    /**
+     * @return Expression
+     */
     public function orIn(array $values)
     {
         return $this->orX(Expr::in($values));
     }
 
-    public function orMatches($regExp)
+    /**
+     * @return Expression
+     */
+    public function orMatches(string $regExp)
     {
         return $this->orX(Expr::matches($regExp));
     }
 
-    public function orStartsWith($prefix)
+    /**
+     * @return Expression
+     */
+    public function orStartsWith(string $prefix)
     {
         return $this->orX(Expr::startsWith($prefix));
     }
 
-    public function orEndsWith($suffix)
+    /**
+     * @return Expression
+     */
+    public function orEndsWith(string $suffix)
     {
         return $this->orX(Expr::endsWith($suffix));
     }
 
-    public function orContains($string)
+    /**
+     * @return Expression
+     */
+    public function orContains(string $string)
     {
         return $this->orX(Expr::contains($string));
     }
 
-    public function orKeyExists($keyName)
+    /**
+     * @return Expression
+     */
+    public function orKeyExists(string $keyName)
     {
         return $this->orX(Expr::keyExists($keyName));
     }
 
-    public function orKeyNotExists($keyName)
+    /**
+     * @return Expression
+     */
+    public function orKeyNotExists(string $keyName)
     {
         return $this->orX(Expr::keyNotExists($keyName));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function evaluate($values)
     {
         foreach ($this->disjuncts as $expr) {
@@ -254,16 +349,13 @@ class OrX implements Expression
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function equivalentTo(Expression $other)
     {
         if (get_class($this) !== get_class($other)) {
             return false;
         }
 
-        /* @var static $other */
+        /** @var static $other */
         $leftDisjuncts = $this->disjuncts;
         $rightDisjuncts = $other->disjuncts;
 
@@ -283,9 +375,6 @@ class OrX implements Expression
         return 0 === count($rightDisjuncts);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toString()
     {
         return implode(' || ', array_map(function (Expression $disjunct) {

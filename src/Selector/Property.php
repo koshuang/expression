@@ -79,7 +79,7 @@ class Property extends Selector
             return false;
         }
 
-        /* @var static $other */
+        /** @var static $other */
         return $this->propertyName === $other->propertyName;
     }
 

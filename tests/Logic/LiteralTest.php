@@ -82,6 +82,7 @@ class LiteralTest extends TestCase
         // tested separately
         if ('true' === $method || 'false' === $method) {
             $this->assertTrue(true);
+
             return;
         }
 
@@ -152,6 +153,7 @@ class LiteralTest extends TestCase
         // tested separately
         if ('true' === $method || 'false' === $method) {
             $this->assertTrue(true);
+
             return;
         }
 

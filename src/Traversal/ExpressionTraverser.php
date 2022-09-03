@@ -40,6 +40,8 @@ class ExpressionTraverser
      * The visitors are invoked in the order in which they are added.
      *
      * @param ExpressionVisitor $visitor The visitor to add.
+     *
+     * @return void
      */
     public function addVisitor(ExpressionVisitor $visitor)
     {
@@ -52,6 +54,8 @@ class ExpressionTraverser
      * If the visitor was added multiple times, all instances are removed.
      *
      * @param ExpressionVisitor $visitor The visitor to remove.
+     *
+     * @return void
      */
     public function removeVisitor(ExpressionVisitor $visitor)
     {
@@ -77,8 +81,8 @@ class ExpressionTraverser
      *
      * @param Expression $expr The expression to traverse.
      *
-     * @return Expression The modified expression. May be `null` if the
-     *                    expression was removed entirely.
+     * @return Expression|null The modified expression. May be `null` if the
+     *                         expression was removed entirely.
      */
     public function traverse(Expression $expr)
     {
@@ -95,6 +99,9 @@ class ExpressionTraverser
         return $expr;
     }
 
+    /**
+     * @return Expression|null
+     */
     private function traverseForVisitor(Expression $expr, ExpressionVisitor $visitor)
     {
         $expr = $visitor->enterExpression($expr);
@@ -116,6 +123,9 @@ class ExpressionTraverser
         return $expr;
     }
 
+    /**
+     * @return Expression|null
+     */
     private function traverseKey(Key $expr)
     {
         $innerExpr1 = $expr->getExpression();
@@ -128,6 +138,9 @@ class ExpressionTraverser
         return $innerExpr2 ? new Key($expr->getKey(), $innerExpr2) : null;
     }
 
+    /**
+     * @return Expression|null
+     */
     private function traverseNot(Not $expr)
     {
         $negatedExpr1 = $expr->getNegatedExpression();
@@ -140,6 +153,9 @@ class ExpressionTraverser
         return $negatedExpr2 ? new Not($negatedExpr2) : null;
     }
 
+    /**
+     * @return Expression|null
+     */
     private function traverseConjunction(AndX $expr)
     {
         $conjuncts1 = $expr->getConjuncts();
@@ -158,6 +174,9 @@ class ExpressionTraverser
         return $conjuncts2 ? new AndX($conjuncts2) : null;
     }
 
+    /**
+     * @return Expression|null
+     */
     private function traverseDisjunction(OrX $expr)
     {
         $disjuncts1 = $expr->getDisjuncts();

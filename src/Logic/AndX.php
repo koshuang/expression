@@ -23,6 +23,8 @@ use Webmozart\Expression\Expression;
  * @since  1.0
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
+ *
+ * {@inheritdoc}
  */
 class AndX implements Expression
 {
@@ -60,6 +62,9 @@ class AndX implements Expression
         return $this->conjuncts;
     }
 
+    /**
+     * @return Expression
+     */
     public function andX(Expression $expr)
     {
         if ($expr instanceof AlwaysTrue) {
@@ -85,164 +90,254 @@ class AndX implements Expression
         return new self($conjuncts);
     }
 
+    /**
+     * @return Expression
+     */
     public function andNot(Expression $expr)
     {
         return $this->andX(Expr::not($expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function andTrue()
     {
         return $this;
     }
 
+    /**
+     * @return Expression
+     */
     public function andFalse()
     {
         return Expr::false();
     }
 
-    public function andKey($keyName, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function andKey(string $keyName, Expression $expr)
     {
         return $this->andX(Expr::key($keyName, $expr));
     }
 
-    public function andMethod($methodName, $args)
+    /**
+     * @return Expression
+     */
+    public function andMethod(string $methodName, mixed $args)
     {
         return $this->andX(call_user_func_array(['Webmozart\Expression\Expr', 'method'], func_get_args()));
     }
 
-    public function andProperty($propertyName, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function andProperty(string $propertyName, Expression $expr)
     {
         return $this->andX(Expr::property($propertyName, $expr));
     }
 
-    public function andAtLeast($count, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function andAtLeast(int $count, Expression $expr)
     {
         return $this->andX(Expr::atLeast($count, $expr));
     }
 
-    public function andAtMost($count, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function andAtMost(int $count, Expression $expr)
     {
         return $this->andX(Expr::atMost($count, $expr));
     }
 
-    public function andExactly($count, Expression $expr)
+    /**
+     * @return Expression
+     */
+    public function andExactly(int $count, Expression $expr)
     {
         return $this->andX(Expr::exactly($count, $expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function andAll(Expression $expr)
     {
         return $this->andX(Expr::all($expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function andCount(Expression $expr)
     {
         return $this->andX(Expr::count($expr));
     }
 
+    /**
+     * @return Expression
+     */
     public function andNull()
     {
         return $this->andX(Expr::null());
     }
 
+    /**
+     * @return Expression
+     */
     public function andNotNull()
     {
         return $this->andX(Expr::notNull());
     }
 
+    /**
+     * @return Expression
+     */
     public function andEmpty()
     {
         return $this->andX(Expr::isEmpty());
     }
 
+    /**
+     * @return Expression
+     */
     public function andNotEmpty()
     {
         return $this->andX(Expr::notEmpty());
     }
 
-    public function andInstanceOf($className)
+    /**
+     * @return Expression
+     */
+    public function andInstanceOf(string $className)
     {
         return $this->andX(Expr::isInstanceOf($className));
     }
 
-    public function andEquals($value)
+    /**
+     * @return Expression
+     */
+    public function andEquals(mixed $value)
     {
         return $this->andX(Expr::equals($value));
     }
 
-    public function andNotEquals($value)
+    /**
+     * @return Expression
+     */
+    public function andNotEquals(mixed $value)
     {
         return $this->andX(Expr::notEquals($value));
     }
 
-    public function andSame($value)
+    /**
+     * @return Expression
+     */
+    public function andSame(mixed $value)
     {
         return $this->andX(Expr::same($value));
     }
 
-    public function andNotSame($value)
+    /**
+     * @return Expression
+     */
+    public function andNotSame(mixed $value)
     {
         return $this->andX(Expr::notSame($value));
     }
 
-    public function andGreaterThan($value)
+    /**
+     * @return Expression
+     */
+    public function andGreaterThan(mixed $value)
     {
         return $this->andX(Expr::greaterThan($value));
     }
 
-    public function andGreaterThanEqual($value)
+    /**
+     * @return Expression
+     */
+    public function andGreaterThanEqual(mixed $value)
     {
         return $this->andX(Expr::greaterThanEqual($value));
     }
 
-    public function andLessThan($value)
+    /**
+     * @return Expression
+     */
+    public function andLessThan(mixed $value)
     {
         return $this->andX(Expr::lessThan($value));
     }
 
-    public function andLessThanEqual($value)
+    /**
+     * @return Expression
+     */
+    public function andLessThanEqual(mixed $value)
     {
         return $this->andX(Expr::lessThanEqual($value));
     }
 
+    /**
+     * @return Expression
+     */
     public function andIn(array $values)
     {
         return $this->andX(Expr::in($values));
     }
 
-    public function andMatches($regExp)
+    /**
+     * @return Expression
+     */
+    public function andMatches(string $regExp)
     {
         return $this->andX(Expr::matches($regExp));
     }
 
-    public function andStartsWith($prefix)
+    /**
+     * @return Expression
+     */
+    public function andStartsWith(string $prefix)
     {
         return $this->andX(Expr::startsWith($prefix));
     }
 
-    public function andEndsWith($suffix)
+    /**
+     * @return Expression
+     */
+    public function andEndsWith(string $suffix)
     {
         return $this->andX(Expr::endsWith($suffix));
     }
 
-    public function andContains($string)
+    /**
+     * @return Expression
+     */
+    public function andContains(string $string)
     {
         return $this->andX(Expr::contains($string));
     }
 
-    public function andKeyExists($keyName)
+    /**
+     * @return Expression
+     */
+    public function andKeyExists(string $keyName)
     {
         return $this->andX(Expr::keyExists($keyName));
     }
 
-    public function andKeyNotExists($keyName)
+    /**
+     * @return Expression
+     */
+    public function andKeyNotExists(string $keyName)
     {
         return $this->andX(Expr::keyNotExists($keyName));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function evaluate($values)
     {
         foreach ($this->conjuncts as $expr) {
@@ -254,16 +349,13 @@ class AndX implements Expression
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function equivalentTo(Expression $other)
     {
         if (get_class($this) !== get_class($other)) {
             return false;
         }
 
-        /* @var static $other */
+        /** @var static $other */
         $leftConjuncts = $this->conjuncts;
         $rightConjuncts = $other->conjuncts;
 
@@ -283,9 +375,6 @@ class AndX implements Expression
         return 0 === count($rightConjuncts);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toString()
     {
         return implode(' && ', array_map(function (Expression $conjunct) {

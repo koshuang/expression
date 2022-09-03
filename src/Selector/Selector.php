@@ -60,7 +60,7 @@ abstract class Selector extends Literal
             return false;
         }
 
-        /* @var Selector $other */
+        /** @var Selector $other */
         return $this->expr->equivalentTo($other->expr);
     }
 }

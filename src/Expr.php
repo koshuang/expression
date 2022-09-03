@@ -103,6 +103,7 @@ class Expr
         }
 
         if (!($collection instanceof Traversable && $collection instanceof ArrayAccess)) {
+            /** @phpstan-ignore-next-line */
             throw new InvalidArgumentException(sprintf('Expected an array or an instance of Traversable and ArrayAccess. Got: %s', is_object($collection) ? get_class($collection) : gettype($collection)));
         }
 
@@ -203,9 +204,8 @@ class Expr
     /**
      * Check that the result of a method call matches an expression.
      *
-     * @param string     $methodName The name of the method to call.
-     * @param mixed      $args...    The method arguments.
-     * @param Expression $expr       The evaluated expression.
+     * @param string $methodName The name of the method to call.
+     * @param mixed  $args...    The method arguments.
      *
      * @return Method The created expression.
      */
@@ -224,7 +224,7 @@ class Expr
      * @param string     $propertyName The name of the property.
      * @param Expression $expr         The evaluated expression.
      *
-     * @return Method The created expression.
+     * @return Property The created expression.
      */
     public static function property($propertyName, Expression $expr)
     {
@@ -339,7 +339,7 @@ class Expr
      *
      * @param string $className The class name.
      *
-     * @return IsEmpty The created expression.
+     * @return IsInstanceOf The created expression.
      */
     public static function isInstanceOf($className)
     {

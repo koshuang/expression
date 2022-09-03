@@ -20,20 +20,19 @@ use Webmozart\Expression\Logic\Literal;
  * @since  1.0
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
+ *
+ * {@inheritdoc}
  */
 class IsInstanceOf extends Literal
 {
-    /**
-     * @var array
-     */
-    private $className;
+    private string $className;
 
     /**
      * Creates the expression.
      *
      * @param string $className The accepted class name.
      */
-    public function __construct($className)
+    public function __construct(string $className)
     {
         $this->className = $className;
     }
@@ -41,7 +40,7 @@ class IsInstanceOf extends Literal
     /**
      * Returns the accepted class name.
      *
-     * @return array The accepted class name.
+     * @return string The accepted class name.
      */
     public function getClassName()
     {
@@ -51,7 +50,7 @@ class IsInstanceOf extends Literal
     /**
      * {@inheritdoc}
      */
-    public function evaluate($value)
+    public function evaluate(mixed $value)
     {
         return $value instanceof $this->className;
     }
@@ -69,9 +68,6 @@ class IsInstanceOf extends Literal
         return $this->className === $other->className;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toString()
     {
         return 'instanceOf('.$this->className.')';

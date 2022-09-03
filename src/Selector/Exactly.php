@@ -43,7 +43,7 @@ class Exactly extends Selector
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritdoc}static
      */
     public function evaluate($value)
     {
@@ -75,7 +75,7 @@ class Exactly extends Selector
             return false;
         }
 
-        /* @var static $other */
+        /** @var static $other */
         return $this->count === $other->count;
     }
 

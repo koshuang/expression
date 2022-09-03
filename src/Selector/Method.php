@@ -83,6 +83,7 @@ class Method extends Selector
             return false;
         }
 
+        /** @phpstan-ignore-next-line */
         return $this->expr->evaluate(call_user_func_array([$value, $this->methodName], $this->arguments));
     }
 
@@ -95,7 +96,7 @@ class Method extends Selector
             return false;
         }
 
-        /* @var static $other */
+        /** @var static $other */
         return $this->methodName === $other->methodName && $this->arguments === $other->arguments;
     }
 
